@@ -4,20 +4,26 @@
     <meta charset='utf-8' />
     <title>Final Project</title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <!--mapbox.js link and script-->
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
+    <!--Deck.gl script-->
+    <script src="https://unpkg.com/@deck.gl/core@^9.0.0/dist.min.js"></script>
+    <script src="https://unpkg.com/@deck.gl/layers@^9.0.0/dist.min.js"></script>
+    <script src="https://unpkg.com/@deck.gl/aggregation-layers@^9.0.0/dist.min.js"></script>
 
     <style>
         body {margin: 0; padding: 0;}
         #map {position: absolute; top: 0; bottom: 0; width: 100%;}
+        canvas {
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
     <div id='map'></div>
     <script>
-
+        // initalize mapbox map
         mapboxgl.accessToken = 'pk.eyJ1IjoiYWhhbHZvIiwiYSI6ImNtMWpqOXk3dTEzZDIyam9nMnZwOXBlOXIifQ.Zj7VFGxBruejC3KeT-yE3Q';
         const map = new mapboxgl.Map({
             container: 'map',
@@ -27,8 +33,19 @@
             zoom:15
         });
 
-        
-        // literally feel free to change all of this, my brain is not working and I do not know how to get any of it to map
+        // create a canvas for deck.gl (from the deck.gl api reference page, trying this out to see if it works)
+        var canvas = document.createElement('canvas');
+        canvas.style.position = 'absolute';
+        canvas.width = map.getSize().x;
+        canvas.height = map.getSize().y;
+        document.getElementById('map').appendChild(canvas);
+
+        // initalize deck.gl 
+        // somehow...
+
+
+
+        /*literally feel free to change all of this, my brain is not working and I do not know how to get any of it to map
         map.on('load', () => {
         map.addSource('treecanopy-avgtemp', {
             type: 'geojson',
@@ -44,7 +61,7 @@
 
         });
 
-    });
+    });*/
 
         map.addControl(new mapboxgl.FullscreenControl());
         map.addControl(new mapboxgl.NavigationControl());
