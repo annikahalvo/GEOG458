@@ -8,16 +8,15 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
     <!--Deck.gl script-->
+    <script src="https://unpkg.com/deck.gl@^9.0.0/dist.min.js"></script>
     <script src="https://unpkg.com/@deck.gl/core@^9.0.0/dist.min.js"></script>
     <script src="https://unpkg.com/@deck.gl/layers@^9.0.0/dist.min.js"></script>
     <script src="https://unpkg.com/@deck.gl/aggregation-layers@^9.0.0/dist.min.js"></script>
-
+    <script src="https://unpkg.com/@deck.gl/mapbox@^9.0.0/dist.min.js"></script>
     <style>
         body {margin: 0; padding: 0;}
         #map {position: absolute; top: 0; bottom: 0; width: 100%;}
-        canvas {
-            pointer-events: none;
-        }
+    
     </style>
 </head>
 <body>
@@ -32,36 +31,33 @@
             center: [-122.3066, 47.6567],
             zoom:15
         });
+//please
+        map.once('load', () => {
+            // Create the HexagonLayer
+        const hexagonLayer = new deck.HexagonLayer({
+            id: 'hexagon-layer',
+            data: 'GEOG458/Tree_Canopy_2016_3894208644859004154.geojson',
+         extruded: true,
+        // need to find a better dataset/which parts of the dataset to use for this nect part. the stuff below is what was used in the example in deck.gl on parking spots in san francisco
+        // https://deck.gl/docs/api-reference/aggregation-layers/hexagon-layer is where the stuff below comes from\
+        //for what we have, I cannot figure out what to use at the momenent
+        /*getPosition: d => d.COORDINATES,
+        getColorWeight: d => d.SPACES,
+        getElevationWeight: d => d.SPACES,*/
+        elevationScale: 4,
+        radius: 200,
+        pickable: true
+      });
+    
+      // Add Deck.gl overlay
+      const deckOverlay = new deck.MapboxOverlay({
+        interleaved: true,
+        layers: [hexagonLayer]
+      });
 
-        // create a canvas for deck.gl (from the deck.gl api reference page, trying this out to see if it works)
-        var canvas = document.createElement('canvas');
-        canvas.style.position = 'absolute';
-        canvas.width = map.getSize().x;
-        canvas.height = map.getSize().y;
-        document.getElementById('map').appendChild(canvas);
+      map.addControl(deckOverlay);
 
-        // initalize deck.gl 
-        // somehow...
-
-
-
-        /*literally feel free to change all of this, my brain is not working and I do not know how to get any of it to map
-        map.on('load', () => {
-        map.addSource('treecanopy-avgtemp', {
-            type: 'geojson',
-            data: 'GEOG458/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons.geojson'
-            });
-
-        
-        map.addLayer(
-        {
-            id :'treecanopy2016',
-            type: 'circle',
-            source: 'treecanopy-avgtemp'
-
-        });
-
-    });*/
-
-        map.addControl(new mapboxgl.FullscreenControl());
-        map.addControl(new mapboxgl.NavigationControl());
+    });
+  </script>
+</body>
+</html>
