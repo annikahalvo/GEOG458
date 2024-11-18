@@ -23,6 +23,7 @@
 <body>
     <div id='map'></div>
     <script>
+
         // initalize mapbox map
         mapboxgl.accessToken = 'pk.eyJ1IjoiYWhhbHZvIiwiYSI6ImNtMWpqOXk3dTEzZDIyam9nMnZwOXBlOXIifQ.Zj7VFGxBruejC3KeT-yE3Q';
         const map = new mapboxgl.Map({
@@ -33,74 +34,32 @@
             zoom:15
         });
 
-        // not deck, still works
-    //     map.on('load', () => {
-    //  map.addSource('hexagons', {
-    //       type: 'geojson',
-    //      data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson'
-    //    });
-    //    map.addLayer({
-    //       'id': 'hexagontree',
-    //       'type': 'fill',
-    //       'source': 'hexagons',
-    //       'paint': {
-    //         'fill-color': ['interpolate',['linear'],['get', 'Can_P'],
-    //                                               0,  '#fff7ec',
-    //                                               10,'#fee8c8',
-    //                                               20, '#fdd49e',
-    //                                               30, '#fdbb84',
-    //                                               40, '#fc8d59',
-    //                                               50, '#ef6548',
-    //                                               60, '#d7301f',
-    //                                               70, '#b30000',
-    //                                               80, '#7f0000',
-    //                                               90, '#000'],
-    //         'fill-outline-color': 'black'
-    //       }
-    //    });
-    //  });
+      map.on('load', () => {
+     map.addSource('hexagons', {
+          type: 'geojson',
+         data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson'
+       });
+       map.addLayer({
+          'id': 'hexagontree',
+          'type': 'fill',
+          'source': 'hexagons',
+          'paint': {
+            'fill-color': ['interpolate',['linear'],['get', 'Can_P'],
+                                                  0,  '#fff7ec',
+                                                  10,'#fee8c8',
+                                                  20, '#fdd49e',
+                                                  30, '#fdbb84',
+                                                  40, '#fc8d59',
+                                                  50, '#ef6548',
+                                                  60, '#d7301f',
+                                                  70, '#b30000',
+                                                  80, '#7f0000',
+                                                  90, '#000'],
+            'fill-outline-color': 'black'
+          }
+       });
+     });
 
-
-//please
-    //     map.once('load', () => {
-    //         // Create the HexagonLayer
-    //     const hexagonLayer = new deck.HexagonLayer({
-    //         id: 'hexagon-layer',
-    //         data: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/sf-bike-parking.json',
-    //      extruded: true,
-    //     // need to find a better dataset/which parts of the dataset to use for this nect part. the stuff below is what was used in the example in deck.gl on parking spots in san francisco
-    //     // https://deck.gl/docs/api-reference/aggregation-layers/hexagon-layer is where the stuff below comes from\
-    //     //for what we have, I cannot figure out what to use at the momenent
-    //     getPosition: d => d.COORDINATES,
-    //     getColorWeight: d => d.SPACES,
-    //     getElevationWeight: d => d.SPACES,
-    //     elevationScale: 4,
-    //     radius: 200,
-    //     pickable: true
-    //   });
-
-    //   // Add Deck.gl overlay
-    // map.once('load', () => {
-    //   const deckOverlay = new deck.MapboxOverlay({
-    //     interleaved: true,
-    //     layers: [
-    //        new deck.HexagonLayer({
-    //         id: 'HexagonLayer',
-    //         data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson',
-    //         extruded: true,
-    //         getPosition: d => d.coordinates,
-    //       getColorWeight: d => d.Can_P,
-    //       getElevationWeight: d => d.Can_P,
-    //       elevationScale: 4,
-    //       radius: 200,
-    //       pickable: true
-    //       })
-    //     ]
-    //   });
-
-    //   map.addControl(deckOverlay);
-
-    // });
   </script>
 </body>
 </html>
