@@ -16,7 +16,7 @@
     <style>
         body {margin: 0; padding: 0;}
         #map {position: absolute; top: 0; bottom: 0; width: 100%;}
-    
+
     </style>
 </head>
 <body>
@@ -42,7 +42,17 @@
           'type': 'fill',
           'source': 'hexagons',
           'paint': {
-            'fill-color': 'white',
+            'fill-color': ['interpolate',['linear'],['get', 'Can_P'],
+                                                  0,  '#fff7ec',
+                                                  10,'#fee8c8',
+                                                  20, '#fdd49e',
+                                                  30, '#fdbb84',
+                                                  40, '#fc8d59',
+                                                  50, '#ef6548',
+                                                  60, '#d7301f',
+                                                  70, '#b30000',
+                                                  80, '#7f0000',
+                                                  90, '#000'],
             'fill-outline-color': 'black'
           }
        });
@@ -66,7 +76,7 @@
         radius: 200,
         pickable: true
       });
-    
+
       // Add Deck.gl overlay
       const deckOverlay = new deck.MapboxOverlay({
         interleaved: true,
