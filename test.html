@@ -32,7 +32,8 @@
             zoom:15
         });
 
-        map.on('load', () => {
+        // not deck, still works
+        /*map.on('load', () => {
      map.addSource('hexagons', {
           type: 'geojson',
          data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson'
@@ -56,9 +57,10 @@
             'fill-outline-color': 'black'
           }
        });
-     });
+     });*/
 
 
+<<<<<<< HEAD
 //please
         /*map.once('load', () => {
             // Create the HexagonLayer
@@ -77,15 +79,48 @@
         pickable: true
       });
 
+=======
+
+      //   map.once('load', () => {
+      //       // Create the HexagonLayer
+      //   const hexagonLayer = new deck.HexagonLayer({
+      //       id: 'hexagon-layer',
+      //       data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson',
+      //    extruded: true,
+      //   // need to find a better dataset/which parts of the dataset to use for this nect part. the stuff below is what was used in the example in deck.gl on parking spots in san francisco
+      //   // https://deck.gl/docs/api-reference/aggregation-layers/hexagon-layer is where the stuff below comes from\
+      //   //for what we have, I cannot figure out what to use at the momenent
+      //   getPosition: d => d.coordinates,
+      //   getColorWeight: d => d.Can_P,
+      //   getElevationWeight: d => d.Can_P,
+      //   elevationScale: 4,
+      //   radius: 200,
+      //   pickable: true
+      // });
+  
+>>>>>>> 55de5e1a16212c2702712806dfb695bdfd32f3bf
       // Add Deck.gl overlay
+    map.once('load', () => {
       const deckOverlay = new deck.MapboxOverlay({
         interleaved: true,
-        layers: [hexagonLayer]
+        layers: [
+           new deck.HexagonLayer({
+            id: 'HexagonLayer',
+            data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson',
+            extruded: true,
+            getPosition: d => d.coordinates,
+          getColorWeight: d => d.Can_P,
+          getElevationWeight: d => d.Can_P,
+          elevationScale: 4,
+          radius: 200,
+          pickable: true
+          })
+        ]
       });
 
       map.addControl(deckOverlay);
 
-    });*/
+    });
   </script>
 </body>
 </html>
