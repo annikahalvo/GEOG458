@@ -31,19 +31,37 @@
             center: [-122.3066, 47.6567],
             zoom:15
         });
+
+        map.on('load', () => {
+     map.addSource('hexagons', {
+          type: 'geojson',
+         data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson'
+       });
+       map.addLayer({
+          'id': 'hexagontree',
+          'type': 'fill',
+          'source': 'hexagons',
+          'paint': {
+            'fill-color': 'white',
+            'fill-outline-color': 'black'
+          }
+       });
+     });
+
+
 //please
-        map.once('load', () => {
+        /*map.once('load', () => {
             // Create the HexagonLayer
         const hexagonLayer = new deck.HexagonLayer({
             id: 'hexagon-layer',
-            data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/TreeCanopy_Seattle_2021/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson',
+            data: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/sf-bike-parking.json',
          extruded: true,
         // need to find a better dataset/which parts of the dataset to use for this nect part. the stuff below is what was used in the example in deck.gl on parking spots in san francisco
         // https://deck.gl/docs/api-reference/aggregation-layers/hexagon-layer is where the stuff below comes from\
         //for what we have, I cannot figure out what to use at the momenent
-        /*getPosition: d => d.COORDINATES,
+        getPosition: d => d.COORDINATES,
         getColorWeight: d => d.SPACES,
-        getElevationWeight: d => d.SPACES,*/
+        getElevationWeight: d => d.SPACES,
         elevationScale: 4,
         radius: 200,
         pickable: true
@@ -57,7 +75,7 @@
 
       map.addControl(deckOverlay);
 
-    });
+    });*/
   </script>
 </body>
 </html>
