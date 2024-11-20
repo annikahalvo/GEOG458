@@ -33,21 +33,21 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {
-                    layer: '',
+                    layer: 'treeperchange',
                     opacity: 1
                      },
                 {
-                    layer: '',
+                    layer: 'treeper2021',
                     opacity: 0.0
                 }
             ],
             onChapterExit: [
                 {
-                     layer: '',
+                     layer: 'treeperchange',
                      opacity: 1
                  },
                  {
-                    layer: '',
+                    layer: 'treeper2021',
                     opacity: 0.0
                  }
             ]
@@ -75,15 +75,15 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                {layer: '',
+                {layer: 'treeperchange',
                     opacity: 1
                 },
-                {layer: '',
+                {layer: 'treeper2021',
                     opacity: 0.0
                 }
             ],
             onChapterExit: [
-                {layer: '',
+                {layer: 'treeper2021',
                     opacity: 0.0
                 }
             ]
@@ -105,7 +105,7 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                {layer: '',
+                {layer: 'treeper2021',
                     opacity: 1
                 }
             ],
@@ -128,7 +128,7 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                {layer: '',
+                {layer: 'treeper2021',
                     opacity: 1
 
                 },

@@ -136,6 +136,8 @@
 <div id="map"></div>
 <div id="mapInset"></div>
 <div id="story"></div>
+<div id="map" style="width: 100%; height: 500px;"></div>
+<button id="toggle">Toggle Year</button>
 
 <script src="./config.js"></script>
 <script>
@@ -349,10 +351,7 @@ map.on("load", function() {
             'fill-outline-color': 'black',
             'fill-opacity': 0.6
             }
-            }
-            
-    
-        );
+});
     map.addLayer({
         'id': 'treeper2021',
         'type': 'fill',
@@ -373,10 +372,35 @@ map.on("load", function() {
                                                   70, '#00441b',
                                                   90, '#000'],
             'fill-outline-color': 'black'
-
         }
     })
 
+
+    map.addLayer({
+        'id': 'treeperchange',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson'
+        },
+        'paint': {
+            'fill-color': ['interpolate',['linear'],['get', 'Change_Percent_AbsDiff'],
+                                                  -10,  '#a50026',
+                                                  -8,'#d73027',
+                                                  -6, '#f46d43',
+                                                  -4, '#fdae61',
+                                                  -2, '#fee08b',
+                                                  0, '#d9ef8b',
+                                                  2, '#a6d96a',
+                                                  5, '#66bd63',
+                                                  7, '#1a9850',
+                                                  9, '#006837'],
+            'fill-outline-color': 'black'
+        }
+    })
+    map.addControl(new mapboxgl.ScaleControl());
+
+    
     // As the map moves, grab and update bounds in inset map.
     if (config.inset) {
     map.on('move', getInsetBounds);
