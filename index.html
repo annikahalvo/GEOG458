@@ -427,6 +427,14 @@
                     response.element.classList.add('active');
                     map[chapter.mapAnimation || 'flyTo'](chapter.location);
 
+                    if (config.inset) {
+                        if (chapter.location.zoom < 5) {
+                            insetMap.flyTo({center: chapter.location.center, zoom: 0});
+                            }
+                        else {
+                            insetMap.flyTo({center: chapter.location.center, zoom: 3});
+                            }
+                    }
                     if (config.showMarkers) {
                         marker.setLngLat(chapter.location.center);
                     }
