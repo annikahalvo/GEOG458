@@ -31,6 +31,22 @@
             position: fixed;
         }
 
+        #mapInset {
+            bottom:50px;
+            right:30px;
+            height: 180px;
+            width:250px;
+            max-width:100%;
+            position: fixed;
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+        }
+        #mapInset .mapboxgl-ctrl-bottom-left{
+            display: none;
+        }
+
         #header {
             margin: auto;
             width: 100%;
@@ -144,7 +160,7 @@
         <div id="before" class="map"></div>
         <div id="after" class="map"></div>
     </div>
-
+    <div id="mapInset"></div>
 
     <!--storymap section-->
     <div id="map"></div>
@@ -304,6 +320,22 @@
             var marker = new mapboxgl.Marker({ color: config.markerColor });
             marker.setLngLat(config.chapters[0].location.center).addTo(map);
         }
+        // Create a inset map if enabled in config.js
+if (config.inset) {
+ var insetMap = new mapboxgl.Map({
+    container: 'mapInset', // container id
+    style: 'mapbox://styles/mapbox/dark-v10', //hosted style id
+    center: config.chapters[0].location.center,
+    // Hardcode above center value if you want insetMap to be static.
+    zoom: 3, // starting zoom
+    hash: false,
+    interactive: false,
+    attributionControl: false,
+    //Future: Once official mapbox-gl-js has globe view enabled,
+    //insetmap can be a globe with the following parameter.
+    //projection: 'globe'
+  });
+}
 
         // instantiate the scrollama
         var scroller = scrollama();
