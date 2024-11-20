@@ -110,12 +110,41 @@
        });
      });
 
+
+
      const container = '#comparison-container';
 
      const map = new mapboxgl.Compare(beforemap, aftermap, container, {
         // Set this to enable comparing two maps by mouse movement:
         //mousemove: true
     });
+
+    aftermap.on('load', () => {
+      aftermap.addSource('hexagons', {
+          type: 'geojson',
+         data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson'
+       });
+      aftermap.addLayer({
+          'id': 'treeperchange',
+          'type': 'fill',
+          'source': 'hexagons',
+          'paint': {
+            'fill-color': ['interpolate',['linear'],['get', 'Change_Percent_AbsDiff'],
+                                                  -10,  '#a50026',
+                                                  -8,'#d73027',
+                                                  -6, '#f46d43',
+                                                  -4, '#fdae61',
+                                                  -2, '#fee08b',
+                                                  0, '#d9ef8b',
+                                                  2, '#a6d96a',
+                                                  4, '#66bd63',
+                                                  6, '#1a9850',
+                                                  8, '#006837'],
+            'fill-outline-color': 'black'
+          }
+        });
+      });
+    
 
   </script>
 </body>
