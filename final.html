@@ -385,22 +385,17 @@ map.on("load", function() {
         },
         'paint': {
             'fill-color': ['interpolate',['linear'],['get', 'Change_Percent_AbsDiff'],
-                                                  -10,  '#a50026',
-                                                  -8,'#d73027',
-                                                  -6, '#f46d43',
-                                                  -4, '#fdae61',
-                                                  -2, '#fee08b',
-                                                  0, '#d9ef8b',
+                                                  -7,'#d7191c',
+                                                  -2, '#fdae61',
+                                                  0, '#ffffbf',
                                                   2, '#a6d96a',
-                                                  5, '#66bd63',
-                                                  7, '#1a9850',
-                                                  9, '#006837'],
+                                                    7,'#1a9641'],
             'fill-outline-color': 'black'
         }
     })
     map.addControl(new mapboxgl.ScaleControl());
 
-    
+
     // As the map moves, grab and update bounds in inset map.
     if (config.inset) {
     map.on('move', getInsetBounds);
@@ -415,7 +410,7 @@ map.on("load", function() {
     .onStepEnter(async response => {
         var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
         var chapter = config.chapters[current_chapter];
-        
+
         response.element.classList.add('active');
         map[chapter.mapAnimation || 'flyTo'](chapter.location);
 
