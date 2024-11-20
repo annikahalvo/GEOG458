@@ -3,7 +3,7 @@
 
 <head>
     <meta charset='utf-8' />
-    <title>Mapbox Storytelling</title>
+    <title>Climate Change in Seattle</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <link rel="icon" type="image/x-icon"
         href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
@@ -24,7 +24,7 @@
             color: #0071bc;
         }
 
-        #map {
+        #map, #comparison-container {
             top: 0;
             height: 100vh;
             width: 100vw;
@@ -138,6 +138,14 @@
 
 <body>
 
+    <!--comparison map section-->
+    <div id="comparison-container">
+        <div id="before" class="map"></div>
+        <div id="after" class="map"></div>
+    </div>
+
+
+    <!--storymap section-->
     <div id="map"></div>
     <div id="story"></div>
 
