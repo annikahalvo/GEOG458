@@ -128,11 +128,39 @@
         .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
             touch-action: unset;
         }
+        .legend {
+        background-color: #fff;
+        border-radius: 3px;
+        bottom: 20px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font:
+              12px/20px 'Helvetica Neue',
+              Arial,Helvetica,sans-serif;
+        padding: 10px;
+        position: absolute;
+        right: 10px;
+        z-index: 1;
+        }
+        .legend h4 {margin: 0 0 10px;}
+        .legend div span {
+            border-radius: 50%;
+            display: inline-block;
+            height: 10px;
+            margin-right: 5px;
+            width: 10px;
+        }
 
         </style>
 </head>
 <body>
-
+<div class="legend" id="pop-legend">
+    <h4>Population</h4>
+    <div><span style="background-color: #0868ac"></span> ≤ 2260800</div>
+    <div><span style="background-color: #900700"></span> ≤ 900700</div>
+    <div><span style="background-color: #7bccc4"></span> ≤ 522600</div>
+    <div><span style="background-color: #bae4bc"></span> ≤ 291000</div>
+    <div><span style="background-color: #f0f9e8"></span> ≤ 130450</div>
+  </div>
 <div id="map"></div>
 <div id="mapInset"></div>
 <div id="story"></div>
