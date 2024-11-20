@@ -33,12 +33,12 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {
-                    layer: 'treeperchange',
+                    layer: 'parks',
                     opacity: 1
                      },
                 {
-                    layer: 'treeper2021',
-                    opacity: 0.0
+                    layer: 'treeperchange',
+                    opacity: 1
                 }
             ],
             onChapterExit: [

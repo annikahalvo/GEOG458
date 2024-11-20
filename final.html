@@ -395,9 +395,21 @@ map.on("load", function() {
                                                   5, '#66bd63',
                                                   7, '#1a9850',
                                                   9, '#006837'],
-            'fill-outline-color': 'black'
         }
     })
+    map.addLayer({
+        'id': 'parks',
+        'type': 'line',
+        'source': {
+            type: 'geojson',
+            data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Park_Boundary_(details)/FeatureServer/2/query?outFields=*&where=1%3D1&f=geojson '
+        },
+        'paint': {
+            'line-color': 'white',
+       }
+    })
+
+
     map.addControl(new mapboxgl.ScaleControl());
 
     
