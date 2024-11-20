@@ -137,7 +137,8 @@
 </head>
 
 <body>
-
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.css" type="text/css">
     <!--comparison map section-->
     <div id="comparison-container">
         <div id="before" class="map"></div>
@@ -173,6 +174,14 @@
             var layerType = map.getLayer(layer).type;
             return layerTypes[layerType];
         }
+    function getLayerPaintType(layer) {
+    var layerDetails = map.getLayer(layer);
+    if (!layerDetails) {
+        console.error(`Layer ${layer} not found.`);
+        return null;
+    }
+    return layerTypes[layerDetails.type];
+}
 
         function setLayerOpacity(layer) {
             var paintProps = getLayerPaintType(layer.layer);
@@ -322,6 +331,87 @@
                     }
                 });
             };
+
+
+
+
+            const beforemap = new mapboxgl.Map({
+            container: 'before',
+            style: 'mapbox://styles/mapbox/dark-v11',
+            projection: 'globe',
+            center: [-122.3066, 47.6567],
+            zoom:10
+        });
+        const aftermap = new mapboxgl.Map({
+            container: 'after',
+            style: 'mapbox://styles/mapbox/dark-v11',
+            projection: 'globe',
+            center: [-122.3066, 47.6567],
+            zoom:10
+        });
+
+        // 2016 tree canopy percent
+      beforemap.on('load', () => {
+      beforemap.addSource('hexagons', {
+          type: 'geojson',
+         data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson'
+       });
+      beforemap.addLayer({
+          'id': 'treeper2016',
+          'type': 'fill',
+          'source': 'hexagons',
+          'paint': {
+            'fill-color': ['interpolate',['linear'],['get', 'TreeCanopy_2016_Percent'],
+                                                  0,  '#f7fcf5',
+                                                  5,'#e5f5e0',
+                                                  15, '#c7e9c0',
+                                                  20, '#a1d99b',
+                                                  25, '#74c476',
+                                                  30, '#41ab5d',
+                                                  40, '#238b45',
+                                                  50, '#006d2c',
+                                                  70, '#00441b',
+                                                  90, '#000'],
+            'fill-outline-color': 'black'
+          }
+       });
+     });
+
+     // 2021 tree canopy
+     aftermap.on('load', () => {
+      aftermap.addSource('hexagons', {
+          type: 'geojson',
+         data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson'
+       });
+      aftermap.addLayer({
+          'id': 'treeper2021',
+          'type': 'fill',
+          'source': 'hexagons',
+          'paint': {
+            'fill-color': ['interpolate',['linear'],['get', 'TreeCanopy_2021_Percent'],
+                                                  0,  '#f7fcf5',
+                                                  5,'#e5f5e0',
+                                                  15, '#c7e9c0',
+                                                  20, '#a1d99b',
+                                                  25, '#74c476',
+                                                  30, '#41ab5d',
+                                                  40, '#238b45',
+                                                  50, '#006d2c',
+                                                  70, '#00441b',
+                                                  90, '#000'],
+            'fill-outline-color': 'black'
+          }
+       });
+     });
+
+
+
+     const container = '#comparison-container';
+
+     const map = new mapboxgl.Compare(beforemap, aftermap, container, {
+        // Set this to enable comparing two maps by mouse movement:
+        //mousemove: true
+    });
 
             // setup the instance, pass callback functions
             scroller

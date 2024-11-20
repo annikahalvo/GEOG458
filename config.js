@@ -33,8 +33,8 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {
-                    layer: 'treeper2016',
-                    opacity: 0.0
+                    layer: 'treeper2021',
+                    opacity: 1
                      },
                 {
                     layer: 'treeper2021',
