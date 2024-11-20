@@ -30,6 +30,26 @@
             width: 100vw;
             position: fixed;
         }
+        #mapInset {
+            bottom:50px;
+            right:30px;
+            height: 180px;
+            width:250px;
+            max-width:100%;
+            position: fixed;
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;}
+
+            #mapInset .mapboxgl-ctrl-bottom-left{
+            display: none;
+        }
+        @media (max-width: 500px) {
+            #mapInset {
+                display: none;
+            }
+        }
 
         #header {
             margin: auto;
@@ -413,6 +433,9 @@
         //mousemove: true
     });
 
+    if (config.inset) {
+    map.on('move', getInsetBounds);
+    }
             // setup the instance, pass callback functions
             scroller
                 .setup({
@@ -474,6 +497,87 @@
                 document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
             }
         });
+
+    //Helper functions for insetmap
+function getInsetBounds() {
+            let bounds = map.getBounds();
+
+            let boundsJson = {
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [
+                            [
+                                [
+                                    bounds._sw.lng,
+                                    bounds._sw.lat
+                                ],
+                                [
+                                    bounds._ne.lng,
+                                    bounds._sw.lat
+                                ],
+                                [
+                                    bounds._ne.lng,
+                                    bounds._ne.lat
+                                ],
+                                [
+                                    bounds._sw.lng,
+                                    bounds._ne.lat
+                                ],
+                                [
+                                    bounds._sw.lng,
+                                    bounds._sw.lat
+                                ]
+                            ]
+                        ]
+                    }
+                }]
+            }
+
+            if (initLoad) {
+                addInsetLayer(boundsJson);
+                initLoad = false;
+            } else {
+                updateInsetLayer(boundsJson);
+            }
+
+        }
+
+function addInsetLayer(bounds) {
+    insetMap.addSource('boundsSource', {
+        'type': 'geojson',
+        'data': bounds
+    });
+
+    insetMap.addLayer({
+        'id': 'boundsLayer',
+        'type': 'fill',
+        'source': 'boundsSource', // reference the data source
+        'layout': {},
+        'paint': {
+            'fill-color': '#fff', // blue color fill
+            'fill-opacity': 0.2
+        }
+    });
+    // // Add a black outline around the polygon.
+    insetMap.addLayer({
+        'id': 'outlineLayer',
+        'type': 'line',
+        'source': 'boundsSource',
+        'layout': {},
+        'paint': {
+            'line-color': '#000',
+            'line-width': 1
+        }
+    });
+}
+
+function updateInsetLayer(bounds) {
+    insetMap.getSource('boundsSource').setData(bounds);
+}
 
     </script>
 
