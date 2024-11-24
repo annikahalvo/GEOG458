@@ -21,7 +21,8 @@ var config = {
             hidden: false,
             title: 'title1',
             //image: ,
-            description: 'T',
+            // -7,'#d7191c',                                                        -2, '#fdae61',                                               0, '#ffffbf',                                                       2, '#a6d96a',                                                   7,'#1a9641' ≥
+            description: '<div class="legend" id="pop-legend"><h4>Total Change (ABS)</h4><div><span style="background-color: #d7191c"></span> ≤ -7</div><div><span style="background-color: #fdae61"></span> ≤ -2</div><div><span style="background-color: #ffffbf"></span> ≤ 0</div><div><span style="background-color: #a6d96a"></span> ≤ 2</div><div><span style="background-color: #1a9641"></span> ≤ 7</div></div> <div style="float: right">Lorem ipsum and all that</div>',
             location: {
                 center: [-122.34259, 47.61399],
                 zoom: 10,
