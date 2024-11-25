@@ -452,6 +452,28 @@ map.on("load", function() {
             'line-color': 'white',
        }
     })
+    map.addLayer({
+        'id': 'temp',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/6/query?outFields=*&where=1%3D1&f=geojson'
+        },
+        'paint': {
+            'fill-color': ['interpolate', ['linear'],['get', 'MAX_'],
+                                        80, '#ffffcc',
+                                        83, '#ffeda0',
+                                        84, '#fed976',
+                                        85, '#feb24c',
+                                        86, '#fd8d3c',
+                                        87, '#fc4e2a',
+                                        88, '#e31a1c',
+                                        92, '#b10026'
+                                    ],
+            'fill-outline-color': 'white'
+            // 'fill-opacity': 0.4
+       }
+    })
 
 
     map.addControl(new mapboxgl.ScaleControl());

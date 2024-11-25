@@ -31,7 +31,11 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [],
+            onChapterEnter: [
+                {layer: 'temp',
+                    opacity: 1
+                }
+            ],
             onChapterExit: []
         },
         {
@@ -52,19 +56,19 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                // {
-                //     layer: 'parks',
-                //     opacity: 1
-                //      },
+                {
+                    layer: 'parks',
+                    opacity: 1
+                     },
                 {
                     layer: 'treeperchange',
-                    opacity: 1
+                    opacity: 0
                 }
             ],
             onChapterExit: [
                 {
                      layer: 'treeperchange',
-                     opacity: 1
+                     opacity: 0
                  },
                  {
                     layer: 'treeper2021',
@@ -96,7 +100,7 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {layer: 'treeperchange',
-                    opacity: 1
+                    opacity: 0
                 },
                 {layer: 'treeper2021',
                     opacity: 0.0
@@ -126,16 +130,16 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {layer: 'treeper2021',
-                    opacity: 1
+                    opacity: 0
                 }
             ],
             onChapterExit: []
         },
         {
-            id: 'fourth-chapter',
+            id: 'temperature',
             alignment: 'right',
             hidden: false,
-            title: 'Parks and Private Schools',
+            title: 'Maximum Average Temperature',
             image: '',
             description: '',
             location: {
@@ -149,11 +153,11 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {layer: 'treeper2021',
-                    opacity: 1
+                    opacity: 0
 
                 },
                 {layer: 'treeper2016',
-                    opacity: 1
+                    opacity: 0
                 }
             ],
             onChapterExit: [
@@ -186,7 +190,7 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {layer: 'treeperchange',
-                    opacity: 1
+                    opacity: 0
                 },
                 {layer: 'treeper2021',
                     opacity: 0.0
