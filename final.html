@@ -453,6 +453,17 @@ map.on("load", function() {
        }
     })
     map.addLayer({
+        'id': 'seattle',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Area_Polygon/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
+        },
+        'paint': {
+            'fill-color': 'green',
+       }
+    })
+    map.addLayer({
         'id': 'temp',
         'type': 'fill',
         'source': {
