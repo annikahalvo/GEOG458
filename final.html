@@ -132,7 +132,7 @@
         /* legend control */
         .legend {
             color: #000;
-            background-color: #fff;
+            background-color: #d8daeb;
             border-radius: 3px;
             bottom: 0%;
             width: 100px;
@@ -481,7 +481,7 @@ map.on("load", function() {
                                         88, '#e31a1c',
                                         92, '#b10026'
                                     ],
-            'fill-outline-color': 'white'
+            
             // 'fill-opacity': 0.4
        }
     })
@@ -516,7 +516,7 @@ map.on("load", function() {
             insetMap.flyTo({center: chapter.location.center, zoom: 0});
           }
           else {
-            insetMap.flyTo({center: chapter.location.center, zoom: 3});
+            insetMap.flyTo({center: chapter.location.center, zoom: 6});
           }
         }
         if (config.showMarkers) {

@@ -24,7 +24,7 @@ var config = {
             description: 'go into how tree cover and climate change are realated, cite a scientific article or something as a set up for what we will talk about eventually', //find articles and make it sound smart
             location: {
                 center: [-122.34259, 47.61399],
-                zoom: 10.5,
+                zoom: 10.42,
                 pitch: 0.00,
                 bearing: 0.00
             },
@@ -51,8 +51,8 @@ var config = {
             description: '<div class="legend" id="pop-legend"><h4>Tree Canopy %</h4><div><span style="background-color: #f7fcf5"></span> ≤ 0</div><div><span style="background-color: #e5f5e0"></span> ≤ 5</div><div><span style="background-color: #c7e9c0"></span> ≤ 15</div><div><span style="background-color: #a1d99b"></span> ≤ 20</div><div><span style="background-color: #74c476"></span> ≤ 25</div><div><span style="background-color: #41ab5d"></span> ≤ 30</div><div><span style="background-color: #238b45"></span> ≤ 40</div><div><span style="background-color: #006d2c"></span> ≤ 50</div><div><span style="background-color: #00441b"></span> ≤ 70</div><div><span style="background-color: #000"></span> ≤ 90</div></div> <div>Tree Canopy data is displayed here in 50 acre hexagons, and the percentage is the amount of area within those 50 acres that have tree canopy </div>',
             location: {
                 center: [-122.34259, 47.61399],
-                zoom: 10,
-                pitch: 10,
+                zoom: 10.42,
+                pitch: 0,
                 bearing: 0
             },
             mapAnimation: 'flyTo',
@@ -81,14 +81,14 @@ var config = {
         },
         {
             id: 'tree-canopy-2021',
-            alignment: 'right',
+            alignment: 'left',
             hidden: false,
             title: '2021 Tree Canopy',
             //image: 'images/SeattlesTopParks_JapaneseGardens_credit-Amelia-Vaughn.jpg',
             description: '<div class="legend" id="pop-legend"><h4>Tree Canopy %</h4><div><span style="background-color: #f7fcf5"></span> ≤ 0</div><div><span style="background-color: #e5f5e0"></span> ≤ 5</div><div><span style="background-color: #c7e9c0"></span> ≤ 15</div><div><span style="background-color: #a1d99b"></span> ≤ 20</div><div><span style="background-color: #74c476"></span> ≤ 25</div><div><span style="background-color: #41ab5d"></span> ≤ 30</div><div><span style="background-color: #238b45"></span> ≤ 40</div><div><span style="background-color: #006d2c"></span> ≤ 50</div><div><span style="background-color: #00441b"></span> ≤ 70</div><div><span style="background-color: #000"></span> ≤ 90</div></div> <div>This is the Tree Canopy from 2021, it might be hard to see, but many areas of Seattle experienced significant changes </div>',
             location: {
                 center: [-122.34259, 47.61399],
-                zoom: 10.5,
+                zoom: 10.42,
                 pitch: 0,
                 bearing: 0,
                 // flyTo additional controls-
@@ -124,7 +124,7 @@ var config = {
             description: '<div class="legend" id="pop-legend"><h4>% Change (ABS)</h4><div><span style="background-color: #d7191c"></span> ≤ -7</div><div><span style="background-color: #fdae61"></span> ≤ -2</div><div><span style="background-color: #ffffbf"></span> ≤ 0</div><div><span style="background-color: #a6d96a"></span> ≤ 2</div><div><span style="background-color: #1a9641"></span> ≤ 7</div></div> <div>This highlights the areas of significant change in tree canopy between 2016-2021. It shows the percent of the absolute change in Tree canopy over the 5 years</div>',
             location: {
                 center: [-122.34259, 47.61399],
-                zoom: 10.5,
+                zoom: 10.42,
                 pitch: 0.00,
                 bearing: 0.00
             },
@@ -140,14 +140,15 @@ var config = {
         },
         {
             id: 'temperature',
-            alignment: 'right',
+            alignment: 'left',
             hidden: false,
             title: 'Maximum Average Afternoon Temperature',
             image: '',
-            description: 'The Maximum Average Afternoon temperature is directly correlated with both Climate Change and Tree Canopy of an area.',
+            description: '<div class="legend" id="pop-legend"><h4>Max Avg Afternoon Temperature (°F)</h4><div><span style="background-color: #ffffcc"></span> ≤ 80°</div><div><span style="background-color: #ffeda0"></span> ≤ 83°</div><div><span style="background-color: #fed976"></span> ≤ 84°</div><div><span style="background-color: #feb24c"></span> ≤ 85°</div><div><span style="background-color: #fd8d3c"></span> ≤ 86°</div><div><span style="background-color: #fc4e2a"></span> ≤ 87°</div><div><span style="background-color: #e31a1c"></span> ≤ 88°</div><div><span style="background-color: #b10026"></span> ≤ 92°</div><div><span style="background-color: #000000"></span> Water</div></div> <div>The Maximum Average Afternoon temperature is directly correlated with both Climate Change and Tree Canopy of an area. Areas in the 2021 tree canopy map with less tree canopy are shown in this map to have a higher maximum afternoon temperature.</div>',
+            //'The Maximum Average Afternoon temperature is directly correlated with both Climate Change and Tree Canopy of an area.',
             location: {
                 center: [-122.34259, 47.61399],
-                zoom: 10.5,
+                zoom: 10.42,
                 pitch: 0,
                 bearing: 0
             },
@@ -178,7 +179,7 @@ var config = {
             description: 'add something here when we figure out what we want to do',
             location: {
                 center: [-122.34259, 47.61399],
-                zoom: 10.5,
+                zoom: 10.42,
                 pitch: 0,
                 bearing: 0,
                 // flyTo additional controls-
