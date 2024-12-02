@@ -7,5 +7,5 @@ with parks!
 
 
 To View:
-https://htmlpreview.github.io/?url=https://github.com/annikahalvo/GEOG458/blob/main/final.html
+https://htmlpreview.github.io/?https://github.com/annikahalvo/GEOG458/blob/main/final.html
 
