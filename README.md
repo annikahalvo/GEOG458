@@ -6,6 +6,4 @@ Tree Canopy and Climate Change in Seattle
 with parks!
 
 
-To View:
-https://htmlpreview.github.io/?https://github.com/annikahalvo/GEOG458/blob/main/final.html
 
