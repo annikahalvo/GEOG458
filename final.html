@@ -648,15 +648,15 @@ document.getElementById("toggle-layers").addEventListener("click", () => {
     const visibility2016 = map.getLayoutProperty("treeper2016", "visibility");
     const visibility2021 = map.getLayoutProperty("treeper2021", "visibility");
 
-    if (visibility2016 === "visible") {
+    if (visibility2016 === "none") {
         // Switch to 2021 layer
-        map.setLayoutProperty("treeper2016", "visibility", "none");
-        map.setLayoutProperty("treeper2021", "visibility", "visible");
+        map.setLayoutProperty("treeper2016", "visibility", "visible");
+        map.setLayoutProperty("treeper2021", "visibility", "none");
         document.getElementById("toggle-layers").innerText = "2016";
     } else {
         // Switch to 2016 layer
-        map.setLayoutProperty("treeper2016", "visibility", "visible");
-        map.setLayoutProperty("treeper2021", "visibility", "none");
+        map.setLayoutProperty("treeper2016", "visibility", "none");
+        map.setLayoutProperty("treeper2021", "visibility", "visible");
         document.getElementById("toggle-layers").innerText = "2021";
     }
 });
