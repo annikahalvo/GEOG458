@@ -171,22 +171,25 @@
             display: flex;
             justify-content: space-evenly;
         }
+        button {
+			color: #ffffff;
+			background-color: #006428;
+			font-size: 19px;
+			border: 1px solid #2d63c8;
+			padding: 15px 50px;
+			cursor: pointer
+		}
+		button:hover {
+			color: #2d63c8;
+			background-color: #ffffff;
+		}
         </style>
 </head>
 <body>
-<!-- <div class="legend" id="pop-legend">
-    <h4>Population</h4>
-    <div><span style="background-color: #0868ac"></span> ≤ 2260800</div>
-    <div><span style="background-color: #900700"></span> ≤ 900700</div>
-    <div><span style="background-color: #7bccc4"></span> ≤ 522600</div>
-    <div><span style="background-color: #bae4bc"></span> ≤ 291000</div>
-    <div><span style="background-color: #f0f9e8"></span> ≤ 130450</div>
-  </div> -->
 <div id="map"></div>
 <div id="mapInset"></div>
 <div id="story"></div>
-<div id="map" style="width: 100%; height: 500px;"></div>
-<button id="toggle">Toggle Year</button>
+<!-- <div id="map" style="width: 100%; height: 500px;"></div> -->
 
 <script src="./config.js"></script>
 <script>
@@ -641,6 +644,22 @@ function addInsetLayer(bounds) {
 function updateInsetLayer(bounds) {
     insetMap.getSource('boundsSource').setData(bounds);
 }
+document.getElementById("toggle-layers").addEventListener("click", () => {
+    const visibility2016 = map.getLayoutProperty("treeper2016", "visibility");
+    const visibility2021 = map.getLayoutProperty("treeper2021", "visibility");
+
+    if (visibility2016 === "visible") {
+        // Switch to 2021 layer
+        map.setLayoutProperty("treeper2016", "visibility", "none");
+        map.setLayoutProperty("treeper2021", "visibility", "visible");
+        document.getElementById("toggle-layers").innerText = "2016";
+    } else {
+        // Switch to 2016 layer
+        map.setLayoutProperty("treeper2016", "visibility", "visible");
+        map.setLayoutProperty("treeper2021", "visibility", "none");
+        document.getElementById("toggle-layers").innerText = "2021";
+    }
+});
 
 </script>
 

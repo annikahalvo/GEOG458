@@ -21,7 +21,7 @@ var config = {
             hidden: false,
             title: 'Tree Cover and Climate Change',
             image: 'Data/Seattle_Center_as_night_falls.jpg', //fix this so an actual image shows up
-            description: '<ul><li>Storing and Removing CO2 from the atmosphere</li><li>Regulate temperature</li><li>Absorb and Slow Rainwater</li><li>Home to countless species with intrinsic value to society</li><li>Renewable</li></ul> image: <a href="https://commons.wikimedia.org/wiki/File:Seattle_Center_as_night_falls.jpg">Jeffery Hayes</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></div>', //find articles and make it sound smart
+            description: '<ul><li>Storing and Removing CO2 from the atmosphere</li><li>Regulate temperature</li><li>Absorb and Slow Rainwater</li><li>Home to countless species with intrinsic value to society</li><li>Renewable</li>image: <a href="https://commons.wikimedia.org/wiki/File:Seattle_Center_as_night_falls.jpg">Jeffery Hayes</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></div></ul> ', //find articles and make it sound smart
             location: {
                 center: [-122.34259, 47.61399],
                 zoom: 10.42,
@@ -249,7 +249,7 @@ var config = {
             hidden: false,
             title: 'Seattle Parks and Tree Canopy',
             //image: 'images/SeattlesTopParks_JapaneseGardens_credit-Amelia-Vaughn.jpg',
-            description: 'Here is many of the places of the trees in relation to the outline of the parks in Seattle. This can be used to keep in mind which places might be in need of trees in relation to the ease of the city planting one there.',
+            description: 'Here is many of the places of the trees in relation to the outline of the parks in Seattle. This can be used to keep in mind which places might be in need of trees in relation to the ease of the city planting one there.<button id="toggle-layers" type="button" name="2016-2021">2016</button>',
             location: {
                 center: [-122.34259, 47.61399],
                 zoom: 10.42,
@@ -273,7 +273,7 @@ var config = {
                     opacity: 1
                 },
                 {layer: 'treeper2016',
-                    opacity: 0
+                    opacity: 1
                 },
                 {layer: 'seattle',//just a polygon of the Seattle area
                     opacity: 0
