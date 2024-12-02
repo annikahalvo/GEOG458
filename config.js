@@ -13,15 +13,15 @@ var config = {
     title: 'Tree Canopy and Climate Change in Seattle from 2016-2021',
     subtitle: 'How has climate change impacted Seattle trees in recent years, and how will that impact us?',
     byline: 'By Annika Halvorson and Xander Bishop',
-    footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
+    footer: '<div>Source: Wikimedia Commons, University of Vermont, City of Seattle, <a href="https://portal.ct.gov/deep/forestry/climate-change/how-forests-offset-climate-change-and-its-impacts">Connecticut DEEP</a> <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.</div>',
     chapters: [
         {
-            id: 'title-basically',
+            id: 'cover',
             alignment: 'left',
             hidden: false,
             title: 'Tree Cover and Climate Change',
-            image: 'GEOG458-1/images/seattle-trees.jpg', //fix this so an actual image shows up
-            description: 'go into how tree cover and climate change are realated, cite a scientific article or something as a set up for what we will talk about eventually', //find articles and make it sound smart
+            image: 'Data/Seattle_Center_as_night_falls.jpg', //fix this so an actual image shows up
+            description: '<ul><li>Storing and Removing CO2 from the atmosphere</li><li>Regulate temperature</li><li>Absorb and Slow Rainwater</li><li>Home to countless species with intrinsic value to society</li><li>Renewable</li></ul> image: <a href="https://commons.wikimedia.org/wiki/File:Seattle_Center_as_night_falls.jpg">Jeffery Hayes</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></div>', //find articles and make it sound smart
             location: {
                 center: [-122.34259, 47.61399],
                 zoom: 10.42,
@@ -32,11 +32,25 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
+                {layer: 'treeper2016',
+                    opacity: 0
+                },
+                {
+                    layer: 'treeperchange',
+                    opacity: 0
+                },
+                {
+                    layer: 'treeper2021',
+                    opacity: 0.0
+                 },
+                {layer: 'temp',
+                    opacity: 0
+                },
                 {layer: 'seattle',//just a polygon of the Seattle area
                     opacity: 0.5
                 },
                 {layer: 'parks', //parks layer to also set the scene for what the viewers will be looking at
-                    opacity: 0.5
+                    opacity: 1
                 }
             ],
             onChapterExit: []
@@ -46,7 +60,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: '2016 Tree Canopy',
-            //image: 
+            //image:
             // -7,'#d7191c',                                                        -2, '#fdae61',                                               0, '#ffffbf',                                                       2, '#a6d96a',                                                   7,'#1a9641' ≥
             description: '<div class="legend" id="pop-legend"><h4>Tree Canopy %</h4><div><span style="background-color: #f7fcf5"></span> ≤ 0</div><div><span style="background-color: #e5f5e0"></span> ≤ 5</div><div><span style="background-color: #c7e9c0"></span> ≤ 15</div><div><span style="background-color: #a1d99b"></span> ≤ 20</div><div><span style="background-color: #74c476"></span> ≤ 25</div><div><span style="background-color: #41ab5d"></span> ≤ 30</div><div><span style="background-color: #238b45"></span> ≤ 40</div><div><span style="background-color: #006d2c"></span> ≤ 50</div><div><span style="background-color: #00441b"></span> ≤ 70</div><div><span style="background-color: #000"></span> ≤ 90</div></div> <div>Tree Canopy data is displayed here in 50 acre hexagons, and the percentage is the amount of area within those 50 acres that have tree canopy </div>',
             location: {
@@ -59,6 +73,23 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
+                {
+                    layer: 'treeperchange',
+                    opacity: 0
+                },
+                {
+                    layer: 'treeper2021',
+                    opacity: 0.0
+                 },
+                {layer: 'temp',
+                    opacity: 0
+                },
+                {layer: 'treeper2016',
+                    opacity: 1
+                },
+                {layer: 'seattle',//just a polygon of the Seattle area
+                    opacity: 0
+                },
                 {
                     layer: 'parks',
                     opacity: 0
@@ -74,7 +105,7 @@ var config = {
                      opacity: 0
                  },
                  {
-                    layer: 'treeper2021',
+                    layer: 'treeper2016',
                     opacity: 0.0
                  }
             ]
@@ -85,7 +116,7 @@ var config = {
             hidden: false,
             title: '2021 Tree Canopy',
             //image: 'images/SeattlesTopParks_JapaneseGardens_credit-Amelia-Vaughn.jpg',
-            description: '<div class="legend" id="pop-legend"><h4>Tree Canopy %</h4><div><span style="background-color: #f7fcf5"></span> ≤ 0</div><div><span style="background-color: #e5f5e0"></span> ≤ 5</div><div><span style="background-color: #c7e9c0"></span> ≤ 15</div><div><span style="background-color: #a1d99b"></span> ≤ 20</div><div><span style="background-color: #74c476"></span> ≤ 25</div><div><span style="background-color: #41ab5d"></span> ≤ 30</div><div><span style="background-color: #238b45"></span> ≤ 40</div><div><span style="background-color: #006d2c"></span> ≤ 50</div><div><span style="background-color: #00441b"></span> ≤ 70</div><div><span style="background-color: #000"></span> ≤ 90</div></div> <div>This is the Tree Canopy from 2021, it might be hard to see, but many areas of Seattle experienced significant changes </div>',
+            description: '<div class="legend" id="pop-legend"><h4>Tree Canopy %</h4><div><span style="background-color: #f7fcf5"></span> ≤ 0</div><div><span style="background-color: #e5f5e0"></span> ≤ 5</div><div><span style="background-color: #c7e9c0"></span> ≤ 15</div><div><span style="background-color: #a1d99b"></span> ≤ 20</div><div><span style="background-color: #74c476"></span> ≤ 25</div><div><span style="background-color: #41ab5d"></span> ≤ 30</div><div><span style="background-color: #238b45"></span> ≤ 40</div><div><span style="background-color: #006d2c"></span> ≤ 50</div><div><span style="background-color: #00441b"></span> ≤ 70</div><div><span style="background-color: #000"></span> ≤ 90</div></div> <div>This is the Tree Canopy from 2021, it might be hard to see, but many areas of Seattle experienced significant changes. </div>',
             location: {
                 center: [-122.34259, 47.61399],
                 zoom: 10.42,
@@ -102,11 +133,27 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
+                {
+                    layer: 'treeperchange',
+                    opacity: 0
+                },
+                {layer: 'temp',
+                    opacity: 0
+                },
+                {layer: 'parks',
+                    opacity: 0
+                },
+                {layer: 'treeper2016',
+                    opacity: 0
+                },
+                {layer: 'seattle',//just a polygon of the Seattle area
+                    opacity: 0
+                },
                 {layer: 'treeperchange',
                     opacity: 0
                 },
                 {layer: 'treeper2021',
-                    opacity: 0.0
+                    opacity: 1
                 }
             ],
             onChapterExit: [
@@ -121,7 +168,7 @@ var config = {
             hidden: false,
             title: '% Absolute Change between 2016-2021',
             //image: '',
-            description: '<div class="legend" id="pop-legend"><h4>% Change (ABS)</h4><div><span style="background-color: #d7191c"></span> ≤ -7</div><div><span style="background-color: #fdae61"></span> ≤ -2</div><div><span style="background-color: #ffffbf"></span> ≤ 0</div><div><span style="background-color: #a6d96a"></span> ≤ 2</div><div><span style="background-color: #1a9641"></span> ≤ 7</div></div> <div>This highlights the areas of significant change in tree canopy between 2016-2021. It shows the percent of the absolute change in Tree canopy over the 5 years</div>',
+            description: '<div class="legend" id="pop-legend"><h4>% Change (ABS)</h4><div><span style="background-color: #d7191c"></span> ≤ -7</div><div><span style="background-color: #fdae61"></span> ≤ -2</div><div><span style="background-color: #ffffbf"></span> ≤ 0</div><div><span style="background-color: #a6d96a"></span> ≤ 2</div><div><span style="background-color: #1a9641"></span> ≤ 7</div></div> <div>This highlights the areas of significant change in tree canopy between 2016-2021. It shows the percent of the absolute change in Tree canopy over the 5 years.</div>',
             location: {
                 center: [-122.34259, 47.61399],
                 zoom: 10.42,
@@ -132,11 +179,30 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
+                {layer: 'temp',
+                    opacity: 0
+                },
+                {layer: 'parks',
+                    opacity: 0
+                },
+                {layer: 'treeper2016',
+                    opacity: 0
+                },
+                {layer: 'seattle',//just a polygon of the Seattle area
+                    opacity: 0
+                },
+                {layer: 'treeperchange',
+                    opacity: 1
+                },
                 {layer: 'treeper2021',
                     opacity: 0
                 }
             ],
-            onChapterExit: []
+            onChapterExit: [
+                {layer: 'treeperchange',
+                    opacity: 0
+                }
+            ]
         },
         {
             id: 'temperature',
@@ -158,17 +224,24 @@ var config = {
             onChapterEnter: [
                 {layer: 'temp',
                     opacity: 1
-
+                },
+                {layer: 'parks',
+                    opacity: 0
                 },
                 {layer: 'treeper2016',
                     opacity: 0
-                }
-            ],
-            onChapterExit: [
+                },
+                {layer: 'seattle',//just a polygon of the Seattle area
+                    opacity: 0
+                },
+                {layer: 'treeperchange',
+                    opacity: 0
+                },
                 {layer: 'treeper2021',
                     opacity: 0
                 }
-            ]
+            ],
+            onChapterExit: []
         },
         {
             id: 'parks!',
@@ -176,7 +249,7 @@ var config = {
             hidden: false,
             title: 'Seattle Parks and Tree Canopy',
             //image: 'images/SeattlesTopParks_JapaneseGardens_credit-Amelia-Vaughn.jpg',
-            description: 'add something here when we figure out what we want to do',
+            description: 'Here is many of the places of the trees in relation to the outline of the parks in Seattle. This can be used to keep in mind which places might be in need of trees in relation to the ease of the city planting one there.',
             location: {
                 center: [-122.34259, 47.61399],
                 zoom: 10.42,
@@ -193,17 +266,26 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
+                {layer: 'temp',
+                    opacity: 0
+                },
+                {layer: 'parks',
+                    opacity: 1
+                },
+                {layer: 'treeper2016',
+                    opacity: 0
+                },
+                {layer: 'seattle',//just a polygon of the Seattle area
+                    opacity: 0
+                },
                 {layer: 'treeperchange',
                     opacity: 0
                 },
                 {layer: 'treeper2021',
-                    opacity: 0.0
+                    opacity: 1
                 }
             ],
             onChapterExit: [
-                {layer: 'treeper2021',
-                    opacity: 0.0
-                }
             ]
         }
     ]

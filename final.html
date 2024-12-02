@@ -116,7 +116,11 @@
         .step img {
             width: 100%;
         }
-
+        .dark img{
+            height: 20vh;
+            width: auto;
+            margin: 0 auto;
+        }
         @media (max-width: 750px) {
             .centered, .lefty, .righty, .fully {
                 width: 90vw;
@@ -163,10 +167,7 @@
         .right {
             float:right
         }
-        #slug-style-id .dark{
-            height: 400px;
-        }
-        p {
+        p:not(#footer) {
             display: flex;
             justify-content: space-evenly;
         }
@@ -408,7 +409,7 @@ map.on("load", function() {
             data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Seattle_Tree_Canopy_2016_2021_50_Acre_Hexagons/FeatureServer/3/query?outFields=*&where=1%3D1&f=geojson'
         },
         'paint': {
-            'fill-color': ['interpolate',['linear'],['get', 'TreeCanopy_2016_Percent'],
+            'fill-color': ['interpolate',['linear'],['get', 'TreeCanopy_2021_Percent'],
                                                   0,  '#f7fcf5',
                                                   5,'#e5f5e0',
                                                   15, '#c7e9c0',
@@ -442,17 +443,6 @@ map.on("load", function() {
         }
     })
     map.addLayer({
-        'id': 'parks',
-        'type': 'line',
-        'source': {
-            type: 'geojson',
-            data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Park_Boundary_(details)/FeatureServer/2/query?outFields=*&where=1%3D1&f=geojson '
-        },
-        'paint': {
-            'line-color': 'white',
-       }
-    })
-    map.addLayer({
         'id': 'seattle',
         'type': 'fill',
         'source': {
@@ -463,6 +453,18 @@ map.on("load", function() {
             'fill-color': 'green',
        }
     })
+    map.addLayer({
+        'id': 'parks',
+        'type': 'line',
+        'source': {
+            type: 'geojson',
+            data: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Park_Boundary_(details)/FeatureServer/2/query?outFields=*&where=1%3D1&f=geojson '
+        },
+        'paint': {
+            'line-color': 'white',
+       }
+    })
+
     map.addLayer({
         'id': 'temp',
         'type': 'fill',
@@ -481,7 +483,7 @@ map.on("load", function() {
                                         88, '#e31a1c',
                                         92, '#b10026'
                                     ],
-            
+
             // 'fill-opacity': 0.4
        }
     })
